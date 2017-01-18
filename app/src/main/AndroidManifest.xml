@@ -81,7 +81,8 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".ShowDetailActivity" />
         <activity android:name=".ListPostByUser" />
-        <activity android:name=".ShowDetailByUser"></activity>
+        <activity android:name=".ShowDetailByUser" />
+        <activity android:name=".MyReservListview"></activity>
     </application>
 
 </manifest>

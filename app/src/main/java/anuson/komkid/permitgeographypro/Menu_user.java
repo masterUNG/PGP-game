@@ -44,7 +44,7 @@ public class Menu_user extends TabActivity {
         tab2.setContent(intent1);
 
         tab3.setIndicator("การจอง");
-        //tab3.setIndicator("",getResources().getDrawable(R.mipmap.ic_launcher));
+        intent1.putExtra("Login", userLoginStrings);
         tab3.setContent(new Intent(this, Menu_user_2.class));
 
         tab4.setIndicator("ยอดนิยม");
