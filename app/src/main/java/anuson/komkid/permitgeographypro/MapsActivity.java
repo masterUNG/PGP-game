@@ -116,6 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 Intent intent = new Intent(MapsActivity.this, ListPostByUser.class);
                 intent.putExtra("mem_id", mem_id);
+
                 intent.putExtra("Login", loginStrings);
                 startActivity(intent);
 

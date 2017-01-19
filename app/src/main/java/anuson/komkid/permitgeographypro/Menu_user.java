@@ -38,14 +38,15 @@ public class Menu_user extends TabActivity {
         tab1.setContent(intent);
 
         tab2.setIndicator("ค้นหาสวน");
-
         Intent intent1 = new Intent(Menu_user.this, MapsActivity.class);
         intent1.putExtra("Login", userLoginStrings);
         tab2.setContent(intent1);
 
+
         tab3.setIndicator("การจอง");
-        intent1.putExtra("Login", userLoginStrings);
-        tab3.setContent(new Intent(this, Menu_user_2.class));
+        Intent intent2 = new Intent(Menu_user.this, Menu_user_2.class);
+        intent2.putExtra("Login", userLoginStrings);
+        tab3.setContent(intent2);
 
         tab4.setIndicator("ยอดนิยม");
         //tab3.setIndicator("",getResources().getDrawable(R.mipmap.ic_launcher));

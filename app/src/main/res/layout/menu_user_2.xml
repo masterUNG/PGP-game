@@ -31,21 +31,21 @@
         android:layout_marginLeft="20dp">
 
         <TextView
-            android:text="TextView"
+            android:text="หัวข้อ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView87"
             android:layout_weight="1" />
 
         <TextView
-            android:text="TextView"
+            android:text="วันที่สิ้นสุด"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView86"
             android:layout_weight="1" />
 
         <TextView
-            android:text="TextView"
+            android:text="สถานะ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView85"

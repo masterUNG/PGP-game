@@ -10,14 +10,14 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-public class SysReserv extends AsyncTask<Void,Void,String>{
+public class SynPost_post_id extends AsyncTask<Void,Void,String> {
 
     private Context context;
-    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_reserv_where_id.php";
+    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_post_where_post_id.php";
     private String men_idString;
 
-    public SysReserv(Context context,
-                   String men_idString) {
+    public SynPost_post_id(Context context,
+                           String men_idString) {
         this.context = context;
         this.men_idString = men_idString;
     }
@@ -31,7 +31,7 @@ public class SysReserv extends AsyncTask<Void,Void,String>{
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("isAdd", "true")
-                    .add("mem_u_id", men_idString)
+                    .add("post_id", men_idString)
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(urlJSON).post(requestBody).build();
@@ -42,7 +42,5 @@ public class SysReserv extends AsyncTask<Void,Void,String>{
             Log.d("27novV3", "e doIn ==> " + e.toString());
             return null;
         }
-
-
     }
 }
