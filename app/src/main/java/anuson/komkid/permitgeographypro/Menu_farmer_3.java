@@ -60,6 +60,7 @@ public class Menu_farmer_3 extends Activity {
                 startStrings[i] = jsonObject.getString("post_data_ster");
                 pic1Strings[i] = jsonObject.getString("post_pic");
                 pic2Strings[i] = jsonObject.getString("post_pic_two");
+                Log.d("testtest", titleStrings[i].toString() + " เว้น " + String.valueOf(i));
 
             }   // for
 

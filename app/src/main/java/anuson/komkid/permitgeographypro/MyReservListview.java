@@ -16,9 +16,9 @@ public class MyReservListview extends BaseAdapter {
     private TextView titleTextView, timeTextView, statusTextView;
 
     public MyReservListview(Context context,
-                         String[] titleStrings,
-                         String[] timeStrings,
-                         String[] statusStrings) {
+                            String[] titleStrings,
+                            String[] timeStrings,
+                            String[] statusStrings) {
         this.context = context;
         this.titleStrings = titleStrings;
         this.timeStrings = timeStrings;
@@ -41,7 +41,7 @@ public class MyReservListview extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup){
+    public View getView(int i, View view, ViewGroup viewGroup) {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view1 = layoutInflater.inflate(R.layout.activity_my_reserv_listview, viewGroup, false);
@@ -57,6 +57,4 @@ public class MyReservListview extends BaseAdapter {
         return view1;
 
     }
-//        setContentView(R.layout.activity_my_reserv_listview);
-
 }
