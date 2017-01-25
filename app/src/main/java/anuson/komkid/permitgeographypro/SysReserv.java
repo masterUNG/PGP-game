@@ -13,7 +13,7 @@ import com.squareup.okhttp.Response;
 public class SysReserv extends AsyncTask<Void,Void,String>{
 
     private Context context;
-    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_reserv_where_id.php";
+    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_reserv_where_id_join.php";
     private String men_idString;
 
     public SysReserv(Context context,

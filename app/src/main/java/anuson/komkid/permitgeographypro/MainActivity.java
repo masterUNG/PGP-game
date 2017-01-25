@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -85,23 +86,23 @@ public class MainActivity extends AppCompatActivity {
 
         //textview สมัครสมาชิก
         final TextView tvw4 = (TextView) findViewById(R.id.textView4);
-        final  TextView tw5 = (TextView) findViewById(R.id.textView44);
+        final TextView tw5 = (TextView) findViewById(R.id.textView44);
+
+
         tvw4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                                                  Intent newActivity = new Intent(MainActivity.this, Register_user.class);
+                        Intent newActivity = new Intent(MainActivity.this, Register_user.class);
                                                   startActivity(newActivity);
                                               }
                                           }
         );
         tw5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                                        Intent newActivity = new Intent(MainActivity.this, Register_farmer.class);
+                                        Intent newActivity = new Intent(MainActivity.this, Main_location.class);
                                         startActivity(newActivity);
                                     }
                                 }
         );
-
-
     }//main method
 
     public void clickMylogin(View view) {
@@ -217,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
 
                             //ส่งค่าไป ใน Login
                             newActivity.putExtra("Login", loginStrings);
-
 
                             startActivity(newActivity);
                             Toast.makeText(context, "Welcome", Toast.LENGTH_SHORT).show();

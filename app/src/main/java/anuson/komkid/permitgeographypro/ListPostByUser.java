@@ -42,7 +42,7 @@ public class ListPostByUser extends AppCompatActivity {
     private TextView farm_nameTextView,name_far_TextView,add_farmerTextView,garden_farmTextView,tel_farmTextView;
     private ImageView pic_farmTextView;
 
-    private Button button_out;
+    private Button button_out,button_comment;
 
 
     @Override

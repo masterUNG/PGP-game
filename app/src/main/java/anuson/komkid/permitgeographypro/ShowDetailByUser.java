@@ -91,17 +91,18 @@ public class ShowDetailByUser extends AppCompatActivity {
         builder.setTitle("การจองสินค้า");
         builder.setMessage("เงื่อนไขการจอง");
         builder.setIcon(R.drawable.dule_icon);
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
-        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ยื่นยัน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 saveValueToServer();
                 dialogInterface.dismiss();
+                finish();
             }
         });
         builder.show();

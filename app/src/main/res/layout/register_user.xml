@@ -16,7 +16,8 @@
         android:onClick="clickSaveData"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/holo_blue_dark" />
 
     <LinearLayout
         android:orientation="vertical"

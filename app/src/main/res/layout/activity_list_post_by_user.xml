@@ -18,11 +18,25 @@
         android:layout_height="match_parent"
         android:gravity="bottom">
 
-        <Button
-            android:text="ย้อนกลับ"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_out_by_post"/>
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="ย้อนกลับ"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_out_by_post"
+                android:layout_weight="1"
+                android:layout_width="wrap_content" />
+
+            <Button
+                android:text="แสดงความคิดเห็น"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -41,21 +55,21 @@
 
             <TextView
                 android:text="หัวข้อ"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView75"
                 android:layout_weight="1" />
 
             <TextView
                 android:text="วันที่เริ่มขาย"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView81"
                 android:layout_weight="1" />
 
             <TextView
                 android:text="สถานะ"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView82"
                 android:layout_weight="1" />

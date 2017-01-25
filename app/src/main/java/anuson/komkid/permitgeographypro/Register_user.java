@@ -136,6 +136,11 @@ public class Register_user extends Activity {
             MyAlert myAlert = new MyAlert();
             myAlert.myDialog(this, "รหัสไม่ตรงกัน","กรุณากรอกรหัสผ่านให้ตรงกันครับ");//เช็ครหัสผ่านให้ตรง
 
+        } else if (aBoolean) {
+            // Non Choose Image
+            MyAlert myAlert = new MyAlert();
+            myAlert.myDialog(this, "ยังไม่ได้เลือกรูป", "กรุณาเลือกรูปภาพ");
+
         }else {
 
             CheckUser checkUser = new CheckUser(this);
