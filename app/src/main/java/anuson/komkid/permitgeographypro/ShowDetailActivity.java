@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ShowDetailActivity extends AppCompatActivity {
 
     //Explicit
@@ -57,8 +62,10 @@ public class ShowDetailActivity extends AppCompatActivity {
 
         titleTextView.setText(titleString);
         textView.setText(textString);
-        startTextView.setText(startString);
-        endTextView.setText(endString);
+
+        startTextView.setText(dateThai(startString));
+        endTextView.setText(dateThai(endString));
+
         statusTextView.setText(showStatus(statusString));
 
         Picasso.with(ShowDetailActivity.this)
@@ -86,8 +93,31 @@ public class ShowDetailActivity extends AppCompatActivity {
         pic1ImageView = (ImageView) findViewById(R.id.imageView5);
         pic2ImageView = (ImageView) findViewById(R.id.imageView7);
         button = (Button) findViewById(R.id.button5);
+    }
+    public static String dateThai(String strDate)
+    {
+        String Months[] = {
+                "ม.ค", "ก.พ", "มี.ค", "เม.ย",
+                "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
+                "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};
 
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+        int year=0,month=0,day=0;
+        try {
+            Date date = df.parse(strDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DATE);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.format("%s %s %s", day,Months[month],year+543);
     }
 
 }   // Main Class

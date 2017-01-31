@@ -10,30 +10,25 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-
-public class SynPost extends AsyncTask<Void, Void, String>{
-
-    //Explicit
+public class Syn_farmer_mem_id extends AsyncTask<Void,Void,String>{
     private Context context;
-    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_post_where_mem_id.php";
+    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_farmer_where_mem_id.php";
     private String men_idString;
 
-    public SynPost(Context context,
-                   String men_idString) {
+    public Syn_farmer_mem_id(Context context,
+                           String men_idString) {
         this.context = context;
         this.men_idString = men_idString;
     }
 
-
     @Override
     protected String doInBackground(Void... voids) {
-
         try {
 
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("isAdd", "true")
-                    .add("mem_id", men_idString)
+                    .add("post_id", men_idString)
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(urlJSON).post(requestBody).build();
@@ -41,8 +36,8 @@ public class SynPost extends AsyncTask<Void, Void, String>{
             return response.body().string();
 
         } catch (Exception e) {
-            Log.d("27novV3", "e doIn ==> " + e.toString());
+            Log.d("31JanV1", "e doIn ==> " + e.toString());
             return null;
         }
     }
-}   // Main Class
+}

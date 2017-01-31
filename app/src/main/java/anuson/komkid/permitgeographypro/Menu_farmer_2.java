@@ -282,7 +282,7 @@ public class Menu_farmer_2 extends Activity {
         protected String doInBackground(Void... params) {
 
             try {
-                OkHttpClient okHttpClient = new OkHttpClient();
+                OkHttpClient okHttpClient  = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
                         .add("post_tiltle", tiltleString)

@@ -10,34 +10,24 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+public class Syn_advice_fruit extends AsyncTask<Void,Void,String> {
 
-public class SynPost extends AsyncTask<Void, Void, String>{
-
-    //Explicit
     private Context context;
-    private static final String urlJSON = "http://swiftcodingthai.com/gam/get_post_where_mem_id.php";
-    private String men_idString;
+    private static final String urlJSON = "http://swiftcodingthai.com/gam/php_get_advice.php";
 
-    public SynPost(Context context,
-                   String men_idString) {
+    public Syn_advice_fruit(Context context) {
         this.context = context;
-        this.men_idString = men_idString;
     }
-
 
     @Override
     protected String doInBackground(Void... voids) {
-
         try {
 
             OkHttpClient okHttpClient = new OkHttpClient();
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .add("isAdd", "true")
-                    .add("mem_id", men_idString)
-                    .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(urlJSON).post(requestBody).build();
+            Request request = builder.url(urlJSON).build();
             Response response = okHttpClient.newCall(request).execute();
+
             return response.body().string();
 
         } catch (Exception e) {
@@ -45,4 +35,4 @@ public class SynPost extends AsyncTask<Void, Void, String>{
             return null;
         }
     }
-}   // Main Class
+}

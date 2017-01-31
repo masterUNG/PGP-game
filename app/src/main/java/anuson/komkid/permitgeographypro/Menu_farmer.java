@@ -24,6 +24,8 @@ public class Menu_farmer extends TabActivity{
             TabHost.TabSpec tab1 = tabHost.newTabSpec("ABA UM");
             TabHost.TabSpec tab2 = tabHost.newTabSpec("ABA DOIS");
             TabHost.TabSpec tab3 = tabHost.newTabSpec("ABA TRES");
+            TabHost.TabSpec tab4 = tabHost.newTabSpec("ABA AU");
+
 
             //Get Valuse From
                     userLoginStrings = getIntent().getStringArrayExtra("Login");
@@ -50,9 +52,16 @@ public class Menu_farmer extends TabActivity{
             intent2.putExtra("Login",userLoginStrings);
             tab3.setContent(intent2);
 
+            tab4.setIndicator("แชค");
+            //tab3.setIndicator("",getResources().getDrawable(R.mipmap.ic_launcher));
+            Intent intent3 = new Intent(Menu_farmer.this,Main_Comment.class);
+            intent3.putExtra("Login",userLoginStrings);
+            tab4.setContent(intent3);
+
             tabHost.addTab(tab1);
             tabHost.addTab(tab2);
             tabHost.addTab(tab3);
+            tabHost.addTab(tab4);
 
 
 

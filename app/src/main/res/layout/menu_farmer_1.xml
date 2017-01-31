@@ -14,14 +14,21 @@
         android:weightSum="1"
         android:layout_weight="1">
 
-        <ImageView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="112dp"
-            android:layout_height="115dp"
-            app:srcCompat="@drawable/bird48"
-            android:id="@+id/imvFarmer"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp" />
+            android:layout_height="115dp">
+
+            <ImageView
+                android:layout_height="115dp"
+                app:srcCompat="@drawable/bird48"
+                android:id="@+id/imvFarmer"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="112dp" />
+
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"

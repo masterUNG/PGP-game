@@ -16,6 +16,11 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ListPostByUser extends AppCompatActivity {
 
     //Explicit
@@ -64,6 +69,16 @@ public class ListPostByUser extends AppCompatActivity {
                 finish();
             }
         });
+
+        button_comment = (Button) findViewById(R.id.button_comment);
+        button_comment.setOnClickListener(new View.OnClickListener() {
+                                   public void onClick(View v) {
+                                       Intent newActivity = new Intent(ListPostByUser.this, Main_Comment.class);
+                                       startActivity(newActivity);
+                                   }
+                               }
+        );
+
 
         try{
             SynFarmer synFarmer = new SynFarmer(ListPostByUser.this);
@@ -114,6 +129,7 @@ public class ListPostByUser extends AppCompatActivity {
 
             final String[] titleStrings = new String[jsonArray.length()];
             final String[] endStrings = new String[jsonArray.length()];
+            final String[] data_endStrings = new String[jsonArray.length()];
             final String[] statusStrings = new String[jsonArray.length()];
             final String[] statusShowStrings = new String[jsonArray.length()];
             final String[] textStrings = new String[jsonArray.length()];
@@ -129,6 +145,7 @@ public class ListPostByUser extends AppCompatActivity {
 
                 titleStrings[i] = jsonObject.getString("post_tiltle");
                 endStrings[i] = jsonObject.getString("post_data_end");
+                data_endStrings[i] = dateThai(endStrings[i]);
                 statusStrings[i] = jsonObject.getString("status_reserv_id");
                 statusShowStrings[i] = showStatus(statusStrings[i]);
                 textStrings[i] = jsonObject.getString("post_text");
@@ -142,12 +159,13 @@ public class ListPostByUser extends AppCompatActivity {
             ListView listView = (ListView) findViewById(R.id.livPostByUser);
 
             MyPostAdapter myPostAdapter = new MyPostAdapter(ListPostByUser.this,
-                    titleStrings, endStrings, statusShowStrings);
+                    titleStrings, data_endStrings, statusShowStrings);
             listView.setAdapter(myPostAdapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
 
                     Intent intent = new Intent(ListPostByUser.this, ShowDetailByUser.class);
                     intent.putExtra("post_tiltle", titleStrings[i]);
@@ -162,7 +180,6 @@ public class ListPostByUser extends AppCompatActivity {
                     intent.putExtra("idPost", idStrings[i]);
 
                     startActivity(intent);
-
 
                 }
             });
@@ -188,7 +205,27 @@ public class ListPostByUser extends AppCompatActivity {
         add_farmerTextView = (TextView) findViewById(R.id.textView71);
         garden_farmTextView = (TextView) findViewById(R.id.textView73);
         tel_farmTextView  = (TextView) findViewById(R.id.textView74);
+    }
+    public static String dateThai(String strDate){
+        String Months[] = {
+                "ม.ค", "ก.พ", "มี.ค", "เม.ย",
+                "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
+                "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+        int year=0,month=0,day=0;
+        try {
+            Date date = df.parse(strDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DATE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.format("%s %s %s", day,Months[month],year+543);
     }
 
 }   // Main Class

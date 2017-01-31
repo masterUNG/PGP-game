@@ -3,13 +3,23 @@ package anuson.komkid.permitgeographypro;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.jibble.simpleftp.SimpleFTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+
 
 public class Menu_farmer_3 extends Activity {
 
@@ -40,6 +50,7 @@ public class Menu_farmer_3 extends Activity {
 
             final String[] titleStrings = new String[jsonArray.length()];
             final String[] endStrings = new String[jsonArray.length()];
+            final String[] data_endStrings = new String[jsonArray.length()];
             final String[] statusShowStrings = new String[jsonArray.length()];
             final String[] statusStrings = new String[jsonArray.length()];
             final String[] textStrings = new String[jsonArray.length()];
@@ -48,24 +59,30 @@ public class Menu_farmer_3 extends Activity {
             final String[] pic2Strings = new String[jsonArray.length()];
 
 
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                 titleStrings[i] = jsonObject.getString("post_tiltle");
-                endStrings[i] = jsonObject.getString("post_data_end");
                 statusStrings[i] = jsonObject.getString("status_reserv_id");
                 statusShowStrings[i] = showStatus(statusStrings[i]);
+
                 textStrings[i] = jsonObject.getString("post_text");
                 startStrings[i] = jsonObject.getString("post_data_ster");
+
+                endStrings[i] = jsonObject.getString("post_data_end");
+                data_endStrings[i] = dateThai(endStrings[i]);
+
                 pic1Strings[i] = jsonObject.getString("post_pic");
                 pic2Strings[i] = jsonObject.getString("post_pic_two");
-                Log.d("testtest", titleStrings[i].toString() + " เว้น " + String.valueOf(i));
+
 
             }   // for
 
+
             MyPostAdapter myPostAdapter = new MyPostAdapter(Menu_farmer_3.this,
-                    titleStrings, endStrings, statusShowStrings);
+                    titleStrings, data_endStrings, statusShowStrings);
             listView.setAdapter(myPostAdapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,4 +117,25 @@ public class Menu_farmer_3 extends Activity {
         return strings[i];
     }
 
+    public static String dateThai(String strDate){
+        String Months[] = {
+                "ม.ค", "ก.พ", "มี.ค", "เม.ย",
+                "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
+                "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        int year=0,month=0,day=0;
+        try {
+            Date date = df.parse(strDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DATE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.format("%s %s %s", day,Months[month],year+543);
+    }
 }   // Main Class

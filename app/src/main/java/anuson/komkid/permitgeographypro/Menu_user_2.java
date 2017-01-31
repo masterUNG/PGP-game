@@ -13,6 +13,11 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class Menu_user_2 extends Activity {
 
@@ -45,6 +50,7 @@ public class Menu_user_2 extends Activity {
 
             final String[] titleStrings = new String[jsonArray.length()];
             final String[] endStrings = new String[jsonArray.length()];
+            final String[] data_endStrings = new String[jsonArray.length()];
             final String[] statusShowStrings = new String[jsonArray.length()];
             final String[] statusStrings = new String[jsonArray.length()];
             final String[] textStrings = new String[jsonArray.length()];
@@ -59,6 +65,7 @@ public class Menu_user_2 extends Activity {
 
                 titleStrings[i] = jsonObject1.getString("post_tiltle");
                 endStrings[i] = jsonObject1.getString("post_data_end");
+                data_endStrings[i] = dateThai(endStrings[i]);
                 statusStrings[i] = jsonObject1.getString("status_reserv_id");
                 statusShowStrings[i] = showStatus(jsonObject1.getString("status_reserv_id"));
                 textStrings[i] = jsonObject1.getString("post_text");
@@ -70,7 +77,7 @@ public class Menu_user_2 extends Activity {
 
             }//for
             MyReservListview myReservListview = new MyReservListview(Menu_user_2.this,
-                    titleStrings, endStrings, statusShowStrings);
+                    titleStrings, data_endStrings, statusShowStrings);
             listView.setAdapter(myReservListview);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,9 +109,28 @@ public class Menu_user_2 extends Activity {
     }//onCreate
 
     private String showStatus(String statusString) {
-
         String[] strings = new String[]{"กำลังขาย", "จอง", "สิ้นสุด"};
-
         return strings[Integer.parseInt(statusString)];
+    }
+    public static String dateThai(String strDate){
+        String Months[] = {
+                "ม.ค", "ก.พ", "มี.ค", "เม.ย",
+                "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
+                "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        int year=0,month=0,day=0;
+        try {
+            Date date = df.parse(strDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DATE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return String.format("%s %s %s", day,Months[month],year+543);
     }
 }
