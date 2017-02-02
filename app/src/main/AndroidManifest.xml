@@ -88,7 +88,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".PostNewByUserActivity"></activity>
+        <activity android:name=".PostNewByUserActivity" />
+        <activity android:name=".ScoreAdapterActivity"></activity>
     </application>
 
 </manifest>

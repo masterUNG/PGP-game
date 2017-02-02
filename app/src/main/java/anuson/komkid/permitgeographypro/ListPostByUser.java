@@ -1,6 +1,8 @@
 package anuson.komkid.permitgeographypro;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +13,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -47,7 +57,11 @@ public class ListPostByUser extends AppCompatActivity {
     private TextView farm_nameTextView,name_far_TextView,add_farmerTextView,garden_farmTextView,tel_farmTextView;
     private ImageView pic_farmTextView;
 
+    private static final String urlPHP = "http://swiftcodingthai.com/gam/php_add_score.php";
+
     private Button button_out,button_comment;
+
+    private String score_post_id, score_mem_id, score_mem_u_id;
 
 
     @Override
@@ -153,12 +167,13 @@ public class ListPostByUser extends AppCompatActivity {
                 pic1Strings[i] = jsonObject.getString("post_pic");
                 pic2Strings[i] = jsonObject.getString("post_pic_two");
                 idStrings[i] = jsonObject.getString("post_id");
+                score_post_id = idStrings[i];
 
             }   // for
 
             ListView listView = (ListView) findViewById(R.id.livPostByUser);
 
-            MyPostAdapter myPostAdapter = new MyPostAdapter(ListPostByUser.this,
+            final MyPostAdapter myPostAdapter = new MyPostAdapter(ListPostByUser.this,
                     titleStrings, data_endStrings, statusShowStrings);
             listView.setAdapter(myPostAdapter);
 
@@ -175,18 +190,16 @@ public class ListPostByUser extends AppCompatActivity {
                     intent.putExtra("post_data_ster", startStrings[i]);
                     intent.putExtra("post_pic", pic1Strings[i]);
                     intent.putExtra("post_pic_two", pic2Strings[i]);
-
                     intent.putExtra("Login", loginStrings);
                     intent.putExtra("idPost", idStrings[i]);
-
                     startActivity(intent);
 
                 }
             });
-
         } catch (Exception e) {
             Log.d("21decV2", "e ==> " + e.toString());
         }
+
     }   // Main Method
 
 

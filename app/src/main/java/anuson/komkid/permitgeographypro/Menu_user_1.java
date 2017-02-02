@@ -86,9 +86,9 @@ public class Menu_user_1 extends FragmentActivity {
 
 
         try{
-            Syn_new_post syn_score = new Syn_new_post(this);
-            syn_score.execute();
-            String s = syn_score.get();
+            Syn_new_post syn_new_post = new Syn_new_post(this);
+            syn_new_post.execute();
+            String s = syn_new_post.get();
             Log.d("30JanV2","JSON Syn_Score ==>" + s);
 
             JSONArray jsonArray = new JSONArray(s);
