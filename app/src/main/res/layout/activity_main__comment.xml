@@ -12,7 +12,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/colorGreen"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:id="@+id/linTopComment">
 
         <TextView
             android:text="แสดงความคิดเห็น"
@@ -27,40 +28,42 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:background="@color/colorGreen"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linButtonComment">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText25"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center"
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:lines="2"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:textAlignment="textStart" />
+
+        <Button
+            android:text="ส่ง"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonSent" />
+    </LinearLayout>
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:background="@color/colorGreen">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText25"
-                android:layout_weight="1"
-                android:gravity="center_horizontal|center"
-                android:background="@color/common_google_signin_btn_text_dark_default"
-                android:lines="2"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:textAlignment="textStart" />
-
-            <Button
-                android:text="ส่ง"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/button" />
-        </LinearLayout>
-
-    </LinearLayout>
+        android:id="@+id/livComment"
+        android:layout_below="@+id/linTopComment"
+        android:layout_above="@+id/linButtonComment"
+        android:layout_margin="20dp" />
 
 </RelativeLayout>

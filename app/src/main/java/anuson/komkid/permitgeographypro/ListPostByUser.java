@@ -1,10 +1,8 @@
 package anuson.komkid.permitgeographypro;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,19 +11,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +27,7 @@ public class ListPostByUser extends AppCompatActivity {
     private String mem_idString;
     private String[] loginStrings;
     private String[] mem_far_String;
-    private  String[] columnfarmerStrings = new String[]{
+    private String[] columnfarmerStrings = new String[]{
             "mem_id",
             "mem_user",
             "mem_pass",
@@ -54,12 +44,12 @@ public class ListPostByUser extends AppCompatActivity {
             "mem_farm_add",
             "mem_pictures"};
 
-    private TextView farm_nameTextView,name_far_TextView,add_farmerTextView,garden_farmTextView,tel_farmTextView;
+    private TextView farm_nameTextView, name_far_TextView, add_farmerTextView, garden_farmTextView, tel_farmTextView;
     private ImageView pic_farmTextView;
 
     private static final String urlPHP = "http://swiftcodingthai.com/gam/php_add_score.php";
 
-    private Button button_out,button_comment;
+    private Button button_out, button_comment;
 
     private String score_post_id, score_mem_id, score_mem_u_id;
 
@@ -77,24 +67,25 @@ public class ListPostByUser extends AppCompatActivity {
         bin();
 
         button_out = (Button) findViewById(R.id.button_out_by_post);
-        button_out.setOnClickListener(new View.OnClickListener(){
+        button_out.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 finish();
             }
         });
 
         button_comment = (Button) findViewById(R.id.button_comment);
         button_comment.setOnClickListener(new View.OnClickListener() {
-                                   public void onClick(View v) {
-                                       Intent newActivity = new Intent(ListPostByUser.this, Main_Comment.class);
-                                       startActivity(newActivity);
-                                   }
-                               }
+                                              public void onClick(View v) {
+                                                  Intent newActivity = new Intent(ListPostByUser.this, Main_Comment.class);
+                                                  newActivity.putExtra("Login", loginStrings);
+                                                  startActivity(newActivity);
+                                              }
+                                          }
         );
 
 
-        try{
+        try {
             SynFarmer synFarmer = new SynFarmer(ListPostByUser.this);
             synFarmer.execute();
             String a = synFarmer.get();
@@ -104,19 +95,19 @@ public class ListPostByUser extends AppCompatActivity {
 
             mem_far_String = new String[columnfarmerStrings.length];
 
-            for(int i =0;i<jsonArray.length();i+=1){
+            for (int i = 0; i < jsonArray.length(); i += 1) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                if(mem_idString.equals(jsonObject.getString(columnfarmerStrings[0]))) {
+                if (mem_idString.equals(jsonObject.getString(columnfarmerStrings[0]))) {
                     for (int j = 0; j < columnfarmerStrings.length; j += 1) {
                         mem_far_String[j] = jsonObject.getString(columnfarmerStrings[j]);
-                        Log.d("14JenV3", "jsonObject : " + j +" : "+ mem_far_String[j]);
+                        Log.d("14JenV3", "jsonObject : " + j + " : " + mem_far_String[j]);
 
-                        farm_nameTextView.setText(""+ mem_far_String[7]);
-                        name_far_TextView.setText(""+ mem_far_String[3]);
-                        add_farmerTextView.setText(""+ mem_far_String[13]);
-                        garden_farmTextView.setText(""+ mem_far_String[8]);
-                        tel_farmTextView.setText(""+ mem_far_String[5]);
+                        farm_nameTextView.setText("" + mem_far_String[7]);
+                        name_far_TextView.setText("" + mem_far_String[3]);
+                        add_farmerTextView.setText("" + mem_far_String[13]);
+                        garden_farmTextView.setText("" + mem_far_String[8]);
+                        tel_farmTextView.setText("" + mem_far_String[5]);
 
                         Picasso.with(ListPostByUser.this).load(mem_far_String[14]).into(pic_farmTextView);
 
@@ -127,8 +118,7 @@ public class ListPostByUser extends AppCompatActivity {
             }//for
 
 
-
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.d("14JanV1", "e ==> " + e.toString());
         }
 
@@ -210,23 +200,25 @@ public class ListPostByUser extends AppCompatActivity {
 
         return strings[i];
     }
-    private void bin(){
+
+    private void bin() {
         pic_farmTextView = (ImageView) findViewById(R.id.imageViewbyPost);
 
         farm_nameTextView = (TextView) findViewById(R.id.textView65);
         name_far_TextView = (TextView) findViewById(R.id.textView70);
         add_farmerTextView = (TextView) findViewById(R.id.textView71);
         garden_farmTextView = (TextView) findViewById(R.id.textView73);
-        tel_farmTextView  = (TextView) findViewById(R.id.textView74);
+        tel_farmTextView = (TextView) findViewById(R.id.textView74);
     }
-    public static String dateThai(String strDate){
+
+    public static String dateThai(String strDate) {
         String Months[] = {
                 "ม.ค", "ก.พ", "มี.ค", "เม.ย",
                 "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
                 "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-        int year=0,month=0,day=0;
+        int year = 0, month = 0, day = 0;
         try {
             Date date = df.parse(strDate);
             Calendar c = Calendar.getInstance();
@@ -238,7 +230,7 @@ public class ListPostByUser extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return String.format("%s %s %s", day,Months[month],year+543);
+        return String.format("%s %s %s", day, Months[month], year + 543);
     }
 
 }   // Main Class
