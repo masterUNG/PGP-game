@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -188,6 +189,19 @@ public class ListPostByUser extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+                    String post_id = idStrings[i];
+                    String mem_u_id = loginStrings[0];
+                    Log.d("2febV4", "post_id ==> " + post_id);
+                    Log.d("2febV4", "mem_u_id ==> " + mem_u_id);
+
+                    Calendar calendar = Calendar.getInstance();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String clickDate = dateFormat.format(calendar.getTime());
+                    Log.d("2febV4", "clickDate ==> " + clickDate);
+                    addScore(clickDate, post_id, mem_u_id);
+
+
+
                     Intent intent = new Intent(ListPostByUser.this, ShowDetailByUser.class);
                     intent.putExtra("post_tiltle", titleStrings[i]);
                     intent.putExtra("post_data_end", endStrings[i]);
@@ -196,8 +210,8 @@ public class ListPostByUser extends AppCompatActivity {
                     intent.putExtra("post_data_ster", startStrings[i]);
                     intent.putExtra("post_pic", pic1Strings[i]);
                     intent.putExtra("post_pic_two", pic2Strings[i]);
-                    intent.putExtra("Login", loginStrings);
-                    intent.putExtra("idPost", idStrings[i]);
+                    intent.putExtra("Login", loginStrings);     //loginString[0]
+                    intent.putExtra("idPost", idStrings[i]);    //post_id
                     startActivity(intent);
 
                 }
@@ -207,6 +221,22 @@ public class ListPostByUser extends AppCompatActivity {
         }
 
     }   // createListView
+
+    private void addScore(String clickDate, String post_id, String mem_u_id) {
+
+        try {
+
+            AddScoreToServer addScoreToServer = new AddScoreToServer(ListPostByUser.this,
+                    clickDate, post_id, mem_u_id);
+            addScoreToServer.execute();
+            Log.d("2febV4", "Result Server ==> " + addScoreToServer.get());
+
+
+        } catch (Exception e) {
+            Log.d("2febV4", "e addScore ==> " + e.toString());
+        }
+
+    }
 
 
     private String showStatus(String statusString) {

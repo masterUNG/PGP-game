@@ -65,6 +65,9 @@ public class ShowDetailByUser extends AppCompatActivity {
         //Show View
         showView();
 
+        //Add Score to Server
+        addScoreToServer();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,14 @@ public class ShowDetailByUser extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }   // Main Method
+
+    private void addScoreToServer() {
+
+        String post_id = getIntent().getStringExtra("idPost");
+        String mem_u_id = loginStrings[0];
+
+
+    }   // addScore
 
     private void confirmOrder() {
 

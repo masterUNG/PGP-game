@@ -78,7 +78,7 @@
         <activity android:name=".ShowDetailActivity" />
         <activity android:name=".ListPostByUser" />
         <activity android:name=".ShowDetailByUser" />
-        <activity android:name=".MyReservListview" />
+
         <activity android:name=".Main_location" />
         <activity android:name=".Main_Comment" />
         <!--
@@ -89,8 +89,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".PostNewByUserActivity" />
-        <activity android:name=".ScoreAdapterActivity"></activity>
+
+        
     </application>
 
 </manifest>
