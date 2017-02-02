@@ -85,6 +85,22 @@ public class ListPostByUser extends AppCompatActivity {
         );
 
 
+        //Create ListView
+        createListView();
+
+
+    }   // Main Method
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        createListView();
+
+    }
+
+    private void createListView() {
+
         try {
             SynFarmer synFarmer = new SynFarmer(ListPostByUser.this);
             synFarmer.execute();
@@ -190,7 +206,7 @@ public class ListPostByUser extends AppCompatActivity {
             Log.d("21decV2", "e ==> " + e.toString());
         }
 
-    }   // Main Method
+    }   // createListView
 
 
     private String showStatus(String statusString) {
